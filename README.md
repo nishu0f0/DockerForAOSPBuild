@@ -1,6 +1,19 @@
 # DockerForAOSPBuild
 
 ```
+#Setup Docker
+
+# Install docker from the link https://docs.docker.com/engine/install/ubuntu/
+
+# Run following command to add current user to docker group. 
+$ sudo usermod -a -G docker $(id -un)   
+Reboot computer for above command to take effect.
+
+# The above command removes the necessity for sudo when running docker command.
+
+```
+
+```
 # Copy your host gitconfig, or create a stripped down version
 $ cp ~/.gitconfig gitconfig
 $ docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android-build-trusty .
