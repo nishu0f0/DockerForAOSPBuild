@@ -1,5 +1,6 @@
 # DockerForAOSPBuild
 
+Note: This repo is useful in building AOSP repos from android 5.1 to android 8. If you need to build AOSP forandroid 5.1 please modify the Docker file by commenting java 8 lines and uncommenting java 7 lines. 
 
 ## Setup Docker
 
@@ -20,6 +21,7 @@ The above command removes the necessity for sudo when running docker command.
 
 ## Setup image and container:
 
+Clone this repo and enter teh repo in the terminal 
 Copy your host gitconfig, or create a stripped down version
 ```
 cp ~/.gitconfig gitconfig
@@ -32,7 +34,7 @@ docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-ar
 
 Create docker container from the image generated from above command
 ```
-docker run --name android-build -v <host computer repos path>:/home/$(id -un)/repos android-build-trusty &
+docker run --name android-build -v <host computer AOSP repos path>:/home/$(id -un)/repos android-build-trusty &
 ```
 
 This docker file creates a user in the image with the same details of user of host computer when built.
