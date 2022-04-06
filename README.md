@@ -1,31 +1,41 @@
 # DockerForAOSPBuild
 
+
+## Setup Docker
+
+
+ Install docker from the link https://docs.docker.com/engine/install/ubuntu/
+ 
+ Run following command to add current user to docker group. 
+
 ```
-#Setup Docker
+sudo usermod -a -G docker $(id -un)   
+```
 
-# Install docker from the link https://docs.docker.com/engine/install/ubuntu/
-
-# Run following command to add current user to docker group. 
-$ sudo usermod -a -G docker $(id -un)   
 Reboot computer for above command to take effect.
 
-# The above command removes the necessity for sudo when running docker command.
+The above command removes the necessity for sudo when running docker command.
 
+
+
+## Setup image and container:
+
+Copy your host gitconfig, or create a stripped down version
+```
+cp ~/.gitconfig gitconfig
 ```
 
+Build docker image
 ```
-# Copy your host gitconfig, or create a stripped down version
-$ cp ~/.gitconfig gitconfig
-$ docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android-build-trusty .
+docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android-build-trusty .
 ```
 
-Then you can create a container with:
+Create docker container from the image generated from above command
 ```
-$ docker run --name android-build -v <host computer repos path>:/home/$(id -un)/repos android-build-trusty &
+docker run --name android-build -v <host computer repos path>:/home/$(id -un)/repos android-build-trusty &
 ```
 
 This docker file creates a user in the image with the same details of user of host computer when built.
-
 Set password for the created user in the root shell.  To get root shell of the docker container, please use following command
 ```
 docker exec -it android-build bash
@@ -33,5 +43,5 @@ docker exec -it android-build bash
 
 You can get the user shell of running container with the following to start your build
 ```
-$ docker exec -it -u $(id -u):$(id -g) android-build bash
+docker exec -it -u $(id -u):$(id -g) android-build bash
 ```
