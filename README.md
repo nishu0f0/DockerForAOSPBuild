@@ -1,6 +1,6 @@
 # DockerForAOSPBuild
 
-Note: This repo is useful in building AOSP repos from android 5.1 to android 8. If you need to build AOSP forandroid 5.1 please modify the Docker file by commenting java 8 lines and uncommenting java 7 lines. 
+Note: This repo is useful in building AOSP repos from android 5.1 to android 8. If you need to build AOSP for android 5.1 please modify the Docker file by commenting java 8 lines and uncommenting java 7 lines. 
 
 ## Setup Docker
 
