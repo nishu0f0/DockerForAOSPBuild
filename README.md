@@ -13,12 +13,12 @@ $ docker run --name android-build -v <host computer repos path>:/home/$(id -un)/
 
 This docker file creates a user in the image with the same details of user of host computer when built.
 
-Set password for the created user using following command in the root shell.  To get root shell of the docker container
+Set password for the created user in the root shell.  To get root shell of the docker container, please use following command
 ```
 docker exec -it android-build bash
 ```
 
 You can get the user shell of running container with the following to start your build
 ```
-$ docker exec -it -u 1001:1001 android-build bash
+$ docker exec -it -u $(id -u):$(id -g) android-build bash
 ```
