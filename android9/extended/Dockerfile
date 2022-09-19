@@ -1,4 +1,4 @@
-FROM android9-builder-image:latest
+FROM android9-build-env-base:latest
 MAINTAINER Nishanth Vurumalla
 
 ARG userid
