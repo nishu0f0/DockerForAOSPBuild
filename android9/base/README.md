@@ -44,10 +44,7 @@ The above command removes the necessity for sudo when running docker command.
 ## Setup image:
 
 Clone this repo and enter the repo in the terminal 
-Copy your host gitconfig, or create a stripped down version
-```
-cp ~/.gitconfig gitconfig
-```
+
 
 Build docker image
 ```

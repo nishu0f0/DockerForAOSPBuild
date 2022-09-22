@@ -1,4 +1,8 @@
-FROM android9-build-env-base:latest
+# Please choose appropriate base image depending on if you wish to manually build base image or use prebuilt iamge.
+
+#FROM android9-build-env-base:latest
+FROM nishu0f0/android-build-env-host:android9
+
 MAINTAINER Nishanth Vurumalla
 
 ARG userid
