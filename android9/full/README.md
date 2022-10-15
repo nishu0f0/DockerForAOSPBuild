@@ -48,7 +48,7 @@ cp ~/.gitconfig gitconfig
 
 Build docker image
 ```
-docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android9-build-env-image .
+docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) --dns "8.8.8.8" -t android9-build-env-image .
 ```
 
 Create docker container from the image generated from above command
@@ -64,5 +64,5 @@ docker exec -it android9-build bash
 
 You can get the user shell of running container with the following to start your build
 ```
-docker exec -it -u $(id -u):$(id -g) android9-build bash
+docker exec -it -u $(id -u):$(id -g) -w /home/$(id -un)/repos android9-build bash
 ```
