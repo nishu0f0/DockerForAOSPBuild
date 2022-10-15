@@ -48,12 +48,12 @@ cp ~/.gitconfig gitconfig
 
 Build docker image
 ```
-docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) --dns "8.8.8.8" -t android9-build-env-image .
+docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android9-build-env-image .
 ```
 
 Create docker container from the image generated from above command
 ```
-docker run --name android9-build -v <host computer AOSP repos path>:/home/$(id -un)/repos android9-build-env-image &
+docker run --name android9-build --dns "8.8.8.8" -v <host computer AOSP repos path>:/home/$(id -un)/repos android9-build-env-image &
 ```
 
 This docker file creates a user in the image with the same details of user of host computer when built.
