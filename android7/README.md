@@ -29,21 +29,21 @@ cp ~/.gitconfig gitconfig
 
 Build docker image
 ```
-docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android-build-trusty .
+docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t android7-build-env-image .
 ```
 
 Create docker container from the image generated from above command
 ```
-docker run --name android-build --dns 8.8.8.8 -v <host computer AOSP repos path>:/home/$(id -un)/repos android-build-trusty &
+docker run --name android7-build --dns "8.8.8.8" -v <host computer AOSP repos path>:/home/$(id -un)/repos android7-build-env-image &
 ```
 
 This docker file creates a user in the image with the same details of user of host computer when built.
 Set password for the created user in the root shell.  To get root shell of the docker container, please use following command
 ```
-docker exec -it android-build bash
+docker exec -it android7-build bash
 ```
 
 You can get the user shell of running container with the following to start your build
 ```
-docker exec -it -u $(id -u):$(id -g) android-build bash
+docker exec -it -u $(id -u):$(id -g) android7-build bash
 ```
