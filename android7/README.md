@@ -38,12 +38,20 @@ docker run --name android7-build --dns "8.8.8.8" -v <host computer AOSP repos pa
 ```
 
 This docker file creates a user in the image with the same details of user of host computer when built.
-Set password for the created user in the root shell.  To get root shell of the docker container, please use following command
+Set password for the created user in the root shell. Add the user to sudoers file.
+
+Modify /etc/java-8-openjdk/security/java.security from container and remove TLSv1, TLSv1.1 from setting jdk.tls.disabledAlgorithms
+
+To get root shell of the docker container, please use following command
 ```
 docker exec -it android7-build bash
 ```
 
+In the root shell, 
+set password for the created user in the root shell. Add the user to sudoers file.
+Modify /etc/java-8-openjdk/security/java.security from container and remove TLSv1, TLSv1.1 from setting jdk.tls.disabledAlgorithms
+
 You can get the user shell of running container with the following to start your build
 ```
-docker exec -it -u $(id -u):$(id -g) android7-build bash
+docker exec -it -u $(id -u):$(id -g) -w /home/$(id -un)/repos android7-build bash
 ```
